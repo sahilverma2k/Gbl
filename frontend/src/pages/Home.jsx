@@ -2,7 +2,7 @@ import React from "react";
 
 import Header from "../partials/Header";
 // import SideBar from "../partials/SideBar";
-import HeroHome from "../partials/HeroHome";
+import HeroHome from "../partials/CardBar";
 
 import Table from "../utils/Table";
 
@@ -18,19 +18,6 @@ function Home() {
           <Table />
         </div>
       </div>
-
-      {/*  Page content */}
-      <main className="flex-grow">
-        {/*  Page sections */}
-
-        {/* <FeaturesHome /> */}
-        {/* <FeaturesBlocks /> */}
-        {/* <Testimonials /> */}
-        {/* <Newsletter /> */}
-      </main>
-
-      {/* <Banner /> */}
-
       {/*  Site footer */}
       {/* <Footer /> */}
     </div>

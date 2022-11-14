@@ -17,6 +17,7 @@
     "express-validator": "^6.7.0",
     "fs": "0.0.1-security",
     "http": "0.0.1-security",
+    "mongodb": "^4.11.0",
     "nodemon": "^2.0.6",
     "socket.io": "^3.0.3"
   }

@@ -5,7 +5,7 @@ import {
   AiOutlineQuestionCircle,
 } from "react-icons/ai";
 import { CgFileDocument } from "react-icons/cg";
-import { FaFire, FaPoo } from "react-icons/fa";
+
 
 const SideBar = () => {
   return (

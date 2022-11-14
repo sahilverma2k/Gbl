@@ -3,14 +3,14 @@ const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const config = require("./config");
+const { connect: mongoInit } = require("./connection");
 const caseDataRouter = require("./routes");
-// const { load: loadCsv } = require("./csv-loader");
 
 const responseFactory = require("./response");
 
 const port = config.development.port;
 
-// mongoInit().then();
+mongoInit().then();
 
 app.use(cors());
 app.use(bodyParser.json());
