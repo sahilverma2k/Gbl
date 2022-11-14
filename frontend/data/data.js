@@ -12,3 +12,40 @@ export const tableHeaders = [
   { id: "caseReporter", title: "Case Reporter" },
   { id: "caseStatus", title: "Case Status" },
 ];
+
+
+export const categories = {
+  branch: [
+    "Branch 3",
+    "Branch 2",
+    "Branch 1"
+  ], 
+  reportingMethod: [
+    "In Person",
+    "Remote",
+    "Cell"
+  ],
+  category: [
+    "Grievance",
+    "Employment"
+  ],
+  subCategory: [
+    "Complaints",
+    "Query"
+  ],
+  priority: [
+    "Low",
+    "Medium",
+    "High"
+  ],
+  nature: [
+    "Health",
+    "Property",
+    "Transport"
+  ],
+  caseStatus: [
+    "Not prepared",
+    "Progress",
+    "Prepared"
+  ]
+}
