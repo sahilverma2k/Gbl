@@ -9,8 +9,8 @@ import Table from "../utils/Table";
 function Home() {
   return (
     <>
-      <Header />
-      <div className="flex flex-col w-full md:w-[calc(100%-6rem)] p-4 md:p-0 md:pl-24">
+      {/* <Header /> */}
+      <div className="flex min-h-screen flex-col gap-12 w-full md:w-[calc(100%-6rem)] p-4 md:pl-24 pt-12">
         <HeroHome />
         <Table />
       </div>
