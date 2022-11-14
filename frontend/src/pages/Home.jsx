@@ -8,19 +8,13 @@ import Table from "../utils/Table";
 
 function Home() {
   return (
-    <div className="flex flex-col min-h-screen overflow-hidden">
-      {/* Site header */}
+    <>
       <Header />
-      <div className="flex">
-        {/* <SideBar /> */}
-        <div className="flex flex-col items-center w-full">
-          <HeroHome />
-          <Table />
-        </div>
+      <div className="flex flex-col w-full md:w-[calc(100%-6rem)] p-4 md:p-0 md:pl-24">
+        <HeroHome />
+        <Table />
       </div>
-      {/*  Site footer */}
-      {/* <Footer /> */}
-    </div>
+    </>
   );
 }
 

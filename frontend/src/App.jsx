@@ -28,14 +28,12 @@ function App() {
   }, [location.pathname]); // triggered on route change
 
   return (
-    <>
-      <div className="absolute bottom-0 left-0 md:top-0 md:left-0">
-        <SideBar />
-      </div>
+    <div className="h-[200vh]">
+      <SideBar />
       <Routes>
         <Route exact path="/" element={<Home />} />
       </Routes>
-    </>
+    </div>
   );
 }
 

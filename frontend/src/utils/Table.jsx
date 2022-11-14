@@ -1,6 +1,7 @@
 import * as React from "react";
 import ReactDOM from "react-dom/client";
 import { useEffect, useState } from "react";
+import ClipLoader from "react-spinners/ClipLoader";
 
 import {
   createColumnHelper,
@@ -68,18 +69,22 @@ const columns = [
 
 function Table() {
   const [data, setData] = React.useState([]);
-  
+  const [loading, setLoading] = React.useState(false);
   // const [data, setData] = React.useState(() => [...defaultData.data]);
 
   useEffect(() => {
+    setLoading(true);
     fetchTitle();
+    setLoading(false);
+    // setTimeout(() => {
+    //   setLoading(false);
+    // }, 5000);
   }, []);
 
   const fetchTitle = async () => {
     const response = await fetch("http://localhost:3000/api/caseDetails/");
     const data_response = await response.json();
     setData(data_response["data"]); //Setting the response into state
-    console.log(data_response);
   };
 
   const table = useReactTable({
@@ -89,73 +94,49 @@ function Table() {
   });
 
   return (
-    <div className="p-2">
-      <div className="mt-2 flex flex-col">
-        <div className="-my-2 overflow-x-auto -mx-4 sm:-mx-6 lg:-mx-8">
-          <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-            <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  {table.getHeaderGroups().map((headerGroup) => (
-                    <tr key={headerGroup.id}>
-                      {headerGroup.headers.map((header) => (
-                        <th
-                          key={header.id}
-                          className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                        >
-                          {header.isPlaceholder
-                            ? null
-                            : flexRender(
-                                header.column.columnDef.header,
-                                header.getContext()
-                              )}
-                        </th>
-                      ))}
-                    </tr>
-                  ))}
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {table.getRowModel().rows.map((row) => (
-                    <tr key={row.id}>
-                      {row.getVisibleCells().map((cell) => (
-                        <td
-                          key={cell.id}
-                          className="px-6 py-4 whitespace-nowrap"
-                        >
-                          {flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext()
-                          )}
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-                <tfoot>
-                  {table.getFooterGroups().map((footerGroup) => (
-                    <tr key={footerGroup.id}>
-                      {footerGroup.headers.map((header) => (
-                        <th key={header.id}>
-                          {header.isPlaceholder
-                            ? null
-                            : flexRender(
-                                header.column.columnDef.footer,
-                                header.getContext()
-                              )}
-                        </th>
-                      ))}
-                    </tr>
-                  ))}
-                </tfoot>
-              </table>
-            </div>
+    <div className="shadow overflow-auto border-b border-gray-200 sm:rounded-lg">
+      <table className="divide-y divide-gray-200">
+        <thead className="bg-gray-50">
+          {table.getHeaderGroups().map((headerGroup) => (
+            <tr key={headerGroup.id}>
+              {headerGroup.headers.map((header) => (
+                <th
+                  key={header.id}
+                  className="text-left text-xs font-medium p-4 text-gray-500 uppercase tracking-wider"
+                >
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        {loading ? (
+          <div className=" flex items-center justify-center h-screen">
+            <ClipLoader
+              size={40}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
           </div>
-        </div>
-      </div>
-      <div className="h-4" />
-      {/* <button onClick={() => rerender()} className="border p-2">
-        Rerender
-      </button> */}
+        ) : (
+          <tbody className="bg-white divide-y divide-gray-200">
+            {table.getRowModel().rows.map((row) => (
+              <tr key={row.id}>
+                {row.getVisibleCells().map((cell) => (
+                  <td key={cell.id} className="whitespace-nowrap px-4 py-3">
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        )}
+      </table>
     </div>
   );
   // console.log("hqh");

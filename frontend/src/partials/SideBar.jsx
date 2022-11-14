@@ -6,12 +6,12 @@ import {
 } from "react-icons/ai";
 import { CgFileDocument } from "react-icons/cg";
 
-
 const SideBar = () => {
   return (
     <div
-      className="relative h-16 md:h-screen w-[100vw] md:w-16 flex flex-row md:flex-col pt-0 md:pt-24
-                  bg-[#ffffff] shadow-lg"
+      className="h-16 md:h-screen w-[100vw] md:w-16 flex flex-row md:flex-col pt-0 md:pt-24
+                  bg-[#ffffff] shadow-lg
+                  fixed md:absolute top-[calc(100vh-4rem)] left-0 md:top-0"
     >
       <SideBarIcon icon={<AiFillHome size="23" />} text={"Home"} />
       <SideBarIcon icon={<BsPlus size="32" />} text={"Components"} />
