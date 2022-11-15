@@ -1,7 +1,6 @@
 import React from "react";
 import Modal from "react-modal";
 import { AiFillCloseCircle } from "react-icons/ai";
-import { isEverythingEmpty } from "./TableUtils";
 import { anotherTableMap, categories } from "../../data/data";
 
 Modal.setAppElement("#root");
@@ -35,7 +34,9 @@ const FilterModal = ({ isModalOpen, closeModal, filters, setFilters }) => {
             <AiFillCloseCircle size={20} color={"black"} />
           </button>
         </div>
+
         <h3 className="font-bold text-lg">Please Select Filters</h3>
+
         <div>
           {Object.keys(categories).map((category) => {
             return (
@@ -43,6 +44,7 @@ const FilterModal = ({ isModalOpen, closeModal, filters, setFilters }) => {
                 <h4 className="font-semibold text-base">
                   {anotherTableMap[category]}
                 </h4>
+                
                 <div className="flex flex-row flex-wrap gap-4 items-center justify-start ">
                   {categories[category].map((neko) => {
                     return (
@@ -53,6 +55,8 @@ const FilterModal = ({ isModalOpen, closeModal, filters, setFilters }) => {
                           name={neko}
                           checked={filters.includes(neko)}
                           value={neko}
+                          // On change function, this adds the selected filters to the filters list,
+                          // passed down as a prop from the parent Table component
                           onChange={() => {
                             if (filters.includes(neko)) {
                               const newArr = filters.filter((i) => i !== neko);
@@ -62,6 +66,7 @@ const FilterModal = ({ isModalOpen, closeModal, filters, setFilters }) => {
                             }
                           }}
                         ></input>
+                        
                         <label className="font-light text-sm" htmlFor={neko}>
                           {neko}
                         </label>

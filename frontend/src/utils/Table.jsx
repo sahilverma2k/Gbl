@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import { useEffect, useState } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -9,10 +9,13 @@ import FilterModal from "./Modal";
 import { sortingFunc } from "./TableUtils";
 
 const Table = () => {
-  const [data, setData] = React.useState([]);
-  const [loading, setLoading] = React.useState(false);
+  const [data, setData] = useState([]);
+  const [_data, set_Data] = useState([]); // A shadow data object, to make sure that the actual data untouched
+
+  const [loading, setLoading] = useState(false);
+  // const [error, setError] = useState(false);
+
   const [currentSort, setCurrentSort] = useState("");
-  const [_data, set_Data] = useState([]);
   const [filters, setFilters] = useState([]);
 
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -25,6 +28,7 @@ const Table = () => {
     setIsOpen(false);
   };
 
+  // Fetch the application data.
   const fetchTitle = async () => {
     const response = await fetch("http://localhost:3000/api/caseDetails/");
     const data_response = await response.json();
@@ -42,6 +46,7 @@ const Table = () => {
     set_Data(data);
   }, [data]);
 
+  // Toggles sort on or off, depending on the context
   const selectSort = (id) => {
     if (currentSort === id) {
       setCurrentSort("");
@@ -50,17 +55,9 @@ const Table = () => {
     }
   };
 
-  const _filterFunc = (val, id, arr) => {
+  // The filter function, it checks for each tag that is selected by the user, is present in the object or not.
+  const _filterFunc = (val) => {
     let retval = true;
-    const kyaKyaSortKarnaHai = [
-      "branch",
-      "reportingMethod",
-      "category",
-      "subCategory",
-      "priority",
-      "nature",
-      "caseStatus",
-    ];
 
     if (filters.length === 0) {
       retval = true;
@@ -70,18 +67,8 @@ const Table = () => {
           retval = false;
         }
       });
-      // for (let i = 0; i < kyaKyaSortKarnaHai.length; i++) {
-      //   if (!filters.includes(val[kyaKyaSortKarnaHai[i]])) {
-      //     retval = false;
-      //     // break;
-      //   } else {
-      //     retval = true;
-      //     break;
-      //   }
-      // }
     }
 
-    console.log(val, retval);
     return retval;
   };
 
@@ -131,6 +118,7 @@ const Table = () => {
           </div>
         ) : (
           <tbody className="bg-white divide-y divide-gray-200">
+            {/* Here the data is sorted and then filtered in the frontend iteslf */}
             {_data
               .sort(function compareFn(a, b) {
                 return sortingFunc(a, b, currentSort);
