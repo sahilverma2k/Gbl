@@ -7,8 +7,9 @@ const priT = {
 export const isEverythingEmpty = (obj) => {
   let a = true;
   Object.values(obj).forEach((i) => {
-    console.log(i.length !== 0);
-    if (i.length !== 0) a = false;
+    if (i.length !== 0) {
+      a = false;
+    }
   });
   return a;
 };

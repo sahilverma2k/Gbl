@@ -6,22 +6,14 @@ import { BiFilterAlt } from "react-icons/bi";
 import { FiArrowDown } from "react-icons/fi";
 import { tableHeaders } from "../../data/data";
 import FilterModal from "./Modal";
-import { isEverythingEmpty, sortingFunc } from "./TableUtils";
+import { sortingFunc } from "./TableUtils";
 
 const Table = () => {
   const [data, setData] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
   const [currentSort, setCurrentSort] = useState("");
   const [_data, set_Data] = useState([]);
-  const [filters, setFilters] = useState({
-    branch: [],
-    reportingMethod: [],
-    category: [],
-    subCategory: [],
-    priority: [],
-    nature: [],
-    caseStatus: [],
-  });
+  const [filters, setFilters] = useState([]);
 
   const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -31,7 +23,6 @@ const Table = () => {
 
   const closeModal = () => {
     setIsOpen(false);
-    console.log(filters, isEverythingEmpty(filters));
   };
 
   const fetchTitle = async () => {
@@ -57,6 +48,41 @@ const Table = () => {
     } else {
       setCurrentSort(id);
     }
+  };
+
+  const _filterFunc = (val, id, arr) => {
+    let retval = true;
+    const kyaKyaSortKarnaHai = [
+      "branch",
+      "reportingMethod",
+      "category",
+      "subCategory",
+      "priority",
+      "nature",
+      "caseStatus",
+    ];
+
+    if (filters.length === 0) {
+      retval = true;
+    } else {
+      filters.forEach((filter) => {
+        if (!Object.values(val).includes(filter)) {
+          retval = false;
+        }
+      });
+      // for (let i = 0; i < kyaKyaSortKarnaHai.length; i++) {
+      //   if (!filters.includes(val[kyaKyaSortKarnaHai[i]])) {
+      //     retval = false;
+      //     // break;
+      //   } else {
+      //     retval = true;
+      //     break;
+      //   }
+      // }
+    }
+
+    console.log(val, retval);
+    return retval;
   };
 
   return (
@@ -85,7 +111,7 @@ const Table = () => {
                 onClick={() => selectSort(header.id)}
                 className={`
                   text-left text-[0.75rem] font-medium p-4 text-gray-500 uppercase tracking-wider
-                  ${currentSort === header.id ? "bg-red-50" : ""}
+                  ${currentSort === header.id ? "bg-slate-300" : ""}
                 `}
               >
                 <p className="flex items-center gap-2">
@@ -109,6 +135,7 @@ const Table = () => {
               .sort(function compareFn(a, b) {
                 return sortingFunc(a, b, currentSort);
               })
+              .filter(_filterFunc)
               .map((row) => (
                 <tr key={row.id}>
                   {tableHeaders.map((header) => (

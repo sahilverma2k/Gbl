@@ -13,6 +13,15 @@ export const tableHeaders = [
   { id: "caseStatus", title: "Case Status" },
 ];
 
+export const anotherTableMap = {
+  branch: "Branch",
+  reportingMethod: "Reporting Method",
+  category: "Category",
+  subCategory: "Sub Category",
+  priority: "Priority",
+  nature: "Nature",
+  caseStatus: "Case Status"
+}
 
 export const categories = {
   branch: [

@@ -4,9 +4,9 @@ import { BiMessageSquareDetail } from "react-icons/bi";
 
 import Card from "../components/Card";
 
-function CardBar() {
+const CardBar = () => {
   return (
-    <div className="flex items-center gap-20 justify-between">
+    <div className="flex items-center gap-5 md:gap-20 justify-between">
       <Card
         icon={<HiOutlineDocumentAdd size="30" />}
         text={"Case upload"}
@@ -24,6 +24,6 @@ function CardBar() {
       />
     </div>
   );
-}
+};
 
 export default CardBar;

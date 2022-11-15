@@ -35,13 +35,13 @@ html {
   }
   /* styles for the cards on the home screen */
   .card-green {
-    @apply text-white hover:text-green-700 border-green-700 bg-green-800 hover:bg-white focus:ring-green-300;
+    @apply text-white border-green-700 bg-gradient-to-l from-red-400 to-blue-400 hover:bg-gradient-to-l hover:from-blue-400 hover:to-red-400 focus:ring-green-300;
   }
   .card-red {
-    @apply text-white hover:text-red-700 border-red-700 bg-red-900 hover:bg-white focus:ring-red-300;
+    @apply text-white hover:text-red-700 border-red-700 bg-gradient-to-l from-red-900 to-red-400 hover:bg-gradient-to-l hover:from-white hover:to-red-400 focus:ring-red-300;
   }
   .card-blue {
-    @apply text-white hover:text-blue-700  border-blue-700 bg-blue-800 hover:bg-white  focus:ring-blue-300;
+    @apply text-white hover:text-blue-700  border-blue-700 bg-gradient-to-r from-blue-900 to-blue-400 hover:bg-gradient-to-r hover:from-white hover:to-blue-400  focus:ring-blue-300;
   }
 
   .rtl {
