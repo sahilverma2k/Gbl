@@ -1,2 +1,25 @@
-# To run the demo, run `npm run dev` on `frontend/`
-# To run the backend, use `node src/App.js` on `backend/`
+> Software engineer case study - GoodBusinessLabs
+
+```sh
+cd backend
+```
+```sh
+npm i
+```
+
+```sh
+cd frontend
+```
+```sh
+npm i
+```
+
+## Run backend
+
+```sh
+npm run dev
+```
+## Run frontend
+```sh
+npm run dev
+```
