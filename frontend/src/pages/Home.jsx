@@ -1,7 +1,4 @@
 import React from "react";
-
-import Header from "../partials/Header";
-// import SideBar from "../partials/SideBar";
 import HeroHome from "../partials/CardBar";
 
 import Table from "../utils/Table";
