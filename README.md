@@ -23,3 +23,4 @@ npm run dev
 ```sh
 npm run dev
 ```
+![image](https://user-images.githubusercontent.com/61312202/206120650-de096e4d-998b-4e0b-b589-0915717bbc2c.png)
